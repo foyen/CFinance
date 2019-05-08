@@ -1,0 +1,6 @@
+<div>
+  <ul>
+    <li class="option" *ngFor="let item of objectList; let i = index" [ngClass]="{'selected': selected[i]}" (click)="itemClicked(i)"> {{item.name}}<span class="pull-right">{{item.date| date:'MM/d/yyyy'}}</span></li>
+    
+  </ul>
+</div>

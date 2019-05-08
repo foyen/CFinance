@@ -1,0 +1,194 @@
+<div class="MainContainer">
+  <section>
+  <div id="pills">
+    <div id="pill-gtotal" class="pill">
+      <div id="p1"class="inline txtcn">
+        <b style="position: relative;top: 10px;">Grand Total</b>
+      </div>
+      <div class="inline pull-right" id="p1-2">
+        <label id='total' *ngIf="calcTotal().grandTotal != 0; else totalElse" >${{calcTotal().grandTotal}}</label>
+        <ng-template #totalElse><label class='noTotal' >_</label></ng-template>
+      </div>
+    </div>
+    <div id="pill-thith"  class="pill">
+      <div id="p2" class="inline txtcn">
+          <b style="position: relative;top: 10px;">Cash Total</b>
+      </div>
+      <div class="inline pull-right" id="p2-2">
+          <label id='total' *ngIf="calcTotal().cashTotal != 0; else totalElse" >${{calcTotal().cashTotal}}</label>
+          <ng-template #totalElse><label class='noTotal' >_</label></ng-template>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="pull-left"  style="width: 15.4rem;">
+    <div class="card" style="width: 15.4rem;">
+        <div class="card-header txtcn">
+          Week
+        </div>
+        <div>
+            <label class="lbl">Choose Date:</label>
+            <div style="margin:5px;">
+              <input type="text" class="form-control" (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker" [(ngModel)]="baseDay" (ngModelChange)="loadWeek($event)"/>
+            </div>
+        </div>       
+<app-select-box [ObjectList]="weekSet.Days" (OnDayClicked)="showDay($event)" >
+
+</app-select-box>
+<div style="width:100%; text-align: center;">
+  Events
+</div>
+<app-select-box [ObjectList]="weekSet.customDays" (DisplayName)="true" (OnDayClicked)="showCDay($event)" >
+
+  </app-select-box>
+        <div class="card-footer text-muted">
+            <button (click)="openVerticallyCentered()"  class="btn btn-primary addNewButton">Add Custome event</button>
+        </div>
+      </div>
+      <div class="card" style="width: 15rem;">
+        <button type="button" style="width: 5rem;" class="btn btn-success">Save</button>
+        <button type="button" style="width: 5rem;" class="btn btn-warning">Rebase</button>
+      </div>
+  </div>
+      <div  *ngFor="let day of weekSet.Days; let dayIndex = index" class="card" [ngClass]="{'hidden':show[dayIndex]}" style="width: 18rem;">
+          <div class="card-header txtcn">
+            {{day.date | date:"EEEE"}}
+          </div>
+              <span class="glyphicons glyphicons-remove"></span>
+              <table class="table table-bordered moneytable">
+                  <colgroup>
+                    <col width=33%>
+                    <col width=33%>
+                    <col width=33%>
+                  </colgroup>
+                <tbody>
+                  <tr class="moneyFormRow" *ngFor="let type of day.cashRevenue">
+                    <td class="txtcn ">{{type.name}}</td>
+                    <td><input style="height: 30px; border:none; border-radius: 0px;" type="number"  name="something" class="form-control input-sm" [(ngModel)]="type.numberOf"  placeholder="0" ></td>
+                    <td  class="txtcn" >${{type.numberOf * type.multiplier}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table class="table table-bordered moneytable">
+                  <colgroup>
+                    <col width=33%>
+                    <col width=33%>
+                    <col width=33%>
+                  </colgroup>
+                <tbody>
+                  <tr class="moneyFormRow" *ngFor="let type2 of day.customeRevenue">
+                    <td class="txtcn ">{{type2.name}}</td>
+                    <td><input style="height: 30px; border:none; border-radius: 0px;" type="number"  name="something" class="form-control input-sm" [(ngModel)]="type2.numberOf"  placeholder="0" ></td>
+                    <td  class="txtcn" >${{type2.numberOf}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Tith</label>
+                <div class="col-sm-6" >
+                    <input type="number"  name="something" class="form-control input-sm" [(ngModel)]="day.subset[0].numberOf"  placeholder="0" >
+                </div>
+                
+              </div>
+              <div >
+                  <span><label class="daytotals">Total:</label>${{day.getTotal().grandTotal}}</span>
+              </div>
+              <div >
+                  <span><label class="daytotals">Cash:</label>${{day.getTotal().cashTotal}}</span>
+              </div>
+              <div >
+                  <span><label class="daytotals" >Offering:</label>${{day.getTotal().grandTotal - day.subset[0].numberOf | absolute}}</span>
+              </div>
+          <!-- <form  *ngFor="let type of day.cashRevenue" id="moneyForm" >
+              <div class="form-group row moneyFormRow ">
+                <label for="staticEmail" class="col-sm-3 col-form-label typelbl">{{type.name}}</label>
+                <div class="col-sm-4">
+                  <input type="text"  name="something" class="form-control" [(ngModel)]="type.numberOf"  placeholder="0" >
+                </div>
+                  <label for="staticEmail" class="col-sm-4 col-form-label typelbl">${{type.numberOf * type.multiplier}}</label>
+              </div>
+
+            </form> -->
+              <div class="collapse" [attr.id]="'collapse' + dayIndex">
+                  <form  *ngFor="let type2 of day.customeRevenue" id="moneyForm" >
+                      <div class="form-group row moneyFormRow ">
+                        <label for="staticEmail" class="col-sm-3 col-form-label typelbl">{{type2.name}}</label>
+                        <div class="col-sm-4">
+                          <input type="text" name="something" class="form-control" [(ngModel)]="type2.numberOf"  placeholder="0" >
+                        </div>
+                          <label for="staticEmail" class="col-sm-4 col-form-label typelbl">${{type2.numberOf * type2.multiplier}}</label>
+                      </div>
+                    </form>
+              </div>
+        </div>
+
+        <div  *ngFor="let day of weekSet.customDays; let CdayIndex = index" class="card" [ngClass]="{'hidden':showC[CdayIndex]}" style="width: 18rem;">
+            <div class="card-header txtcn">
+                {{day.name}} - {{day.date | date:"EEEE"}}
+            </div>
+                <span class="glyphicons glyphicons-remove"></span>
+                <table class="table table-bordered moneytable">
+                    <colgroup>
+                      <col width=33%>
+                      <col width=33%>
+                      <col width=33%>
+                    </colgroup>
+                  <tbody>
+                    <tr class="moneyFormRow" *ngFor="let type of day.cashRevenue">
+                      <td class="txtcn ">{{type.name}}</td>
+                      <td><input style="height: 30px; border:none; border-radius: 0px;" type="number"  name="something" class="form-control input-sm" [(ngModel)]="type.numberOf"  placeholder="0" ></td>
+                      <td  class="txtcn" >${{type.numberOf * type.multiplier}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+  
+                <table class="table table-bordered moneytable">
+                    <colgroup>
+                      <col width=33%>
+                      <col width=33%>
+                      <col width=33%>
+                    </colgroup>
+                  <tbody>
+                    <tr class="moneyFormRow" *ngFor="let type2 of day.customeRevenue">
+                      <td class="txtcn ">{{type2.name}}</td>
+                      <td><input style="height: 30px; border:none; border-radius: 0px;" type="number"  name="something" class="form-control input-sm" [(ngModel)]="type2.numberOf"  placeholder="0" ></td>
+                      <td  class="txtcn" >${{type2.numberOf}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Tith</label>
+                    <div class="col-sm-6" >
+                        <input type="number"  name="something" class="form-control input-sm" [(ngModel)]="day.subset[0].numberOf"  placeholder="0" >
+                    </div>
+                    
+                  </div>
+                  <div >
+                      <span><label class="daytotals">Total:</label>${{day.getTotal().grandTotal}}</span>
+                  </div>
+                  <div >
+                      <span><label class="daytotals">Cash:</label>${{day.getTotal().cashTotal}}</span>
+                  </div>
+                  <div >
+                      <span><label class="daytotals" >Offering:</label>${{day.getTotal().grandTotal - day.subset[0].numberOf | absolute}}</span>
+                  </div>
+            <!-- <form  *ngFor="let type of day.cashRevenue" id="moneyForm" >
+                <div class="form-group row moneyFormRow ">
+                  <label for="staticEmail" class="col-sm-3 col-form-label typelbl">{{type.name}}</label>
+                  <div class="col-sm-4">
+                    <input type="text"  name="something" class="form-control" [(ngModel)]="type.numberOf"  placeholder="0" >
+                  </div>
+                    <label for="staticEmail" class="col-sm-4 col-form-label typelbl">${{type.numberOf * type.multiplier}}</label>
+                </div>
+  
+              </form> -->
+              
+          </div>
+        
+</div>
+<app-event-modal (saveCustomeDay)="addNewCustomeDay($event)" >
+
+</app-event-modal>
+

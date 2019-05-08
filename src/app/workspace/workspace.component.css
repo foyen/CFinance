@@ -1,0 +1,96 @@
+.MainContainer{
+    margin: 5px;
+    border-radius: 3px;
+}
+
+.typelbl{
+    width: 75px;
+}
+
+.typeinpt{
+    width: 75px;
+}
+#pills{
+    height: 100px;
+    margin: auto;
+    width:fit-content;
+}
+
+.pill{
+    width: 175px;
+    height:70px;
+    display: inline-block;
+    margin:10px;
+}
+
+#pill-gtotal{
+    background-color:#5C5CFF;
+}
+#p1{
+    background-color:#ADD8E6;
+    width: 70px;
+    height:70px;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+#p1-2{
+    background-color:#3795B4;
+    width: 105px;
+    height:70px;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    
+}
+
+#pill-thith{
+    background-color:#FBDB74;
+}
+
+#p2 {
+    background-color:#FCE9AB;
+    width: 70px;
+    height:70px;
+    margin: 0px;
+    overflow: hidden;
+}
+
+#p2-2 {
+    background-color:#D09F06;
+    width: 105px;
+    height:70px;
+    margin: 0px;
+    text-align: center;
+}
+
+#moneyForm{
+    margin:5px;
+}
+
+.moneyFormRow td{
+   padding:3px;
+}
+
+#total{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 150%;
+    position:relative;
+    top: 18px;
+
+}
+
+.noTotal{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 150%;
+    position:relative;
+    top: 10px;
+
+}
+
+.daytotals{
+    margin:5px 0px 0px 5px;
+    font-style: bold;
+    width:85px;
+    
+}

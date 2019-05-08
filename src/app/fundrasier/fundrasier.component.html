@@ -1,0 +1,57 @@
+<div class="pills">
+
+</div>
+<div class="card" style="width: 15rem;">
+
+</div>
+
+<div class="card" style="width: 40rem;">
+  <div class="tables"  >
+    <div>
+      Personal Contributions
+    </div>
+    <table class="header-fixed table-striped">
+      <thead  style="text-align:center;">
+        <tr>
+          <th>Name</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody style="text-align:center;">
+        <tr>
+          <td><input type="number" class="form-control" ></td>
+          <td><input type="number" class="form-control" ></td>
+          <td><input class="form-control" (click)="w.toggle()" ngbDatepicker #w="ngbDatepicker"/></td>
+          <td><button  style="width: 75px;" class="btn btn-success" (click)="saveNewPersonalCon()">Save</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <div>
+        Daily Contributions
+      </div>
+      <table class="header-fixed table-striped">
+        <thead  style="text-align:center;">
+          <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody style="text-align:center;">
+          <tr>
+            <td><input type="number" class="form-control" ></td>
+            <td><input type="number" class="form-control" ></td>
+            <td><input class="form-control" (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker"/></td>
+            <td><button  style="width: 75px;" class="btn btn-success" (click)="saveNewDailyCon()">Save</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+  </div>
+
+</div>
+  

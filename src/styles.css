@@ -1,0 +1,74 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+#headNav, #headNav ul{
+    background-color: #FFC966;
+    height:60px;
+}
+#headNav:hover, #headNav ul{
+    background-color: #FFCB99;
+
+}
+.nav-link{
+    color:white;
+    height: 60px;
+}
+
+.nav-link:hover{
+    color:whitesmoke;
+    height: 60px;
+}
+
+.addNewButton{
+    width:100%;
+}
+
+.card{
+
+    margin: 5px;
+    border-top:orange solid 7px;
+    border-radius: 7px;
+    border-bottom:orange solid 7px;
+    
+    display:inline-flex;
+}
+
+.active{
+    background-color: #FFDB99;
+    
+}
+
+.pull-right{
+    float: right;
+}
+
+.pull-left{
+    float: left;
+}
+
+.inline{
+    display:inline-block;
+}
+.txtcn{
+    text-align: center;
+}
+
+.lbl{
+    margin:5px;
+}
+.glyphicon-remove{content:"\e014";}
+body{
+    background-color: #EFEFEF;
+}
+
+.clearfix{
+    clear: both;
+}
+
+.hidden{
+    display: none;
+}
